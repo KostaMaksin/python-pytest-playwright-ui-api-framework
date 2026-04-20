@@ -7,23 +7,17 @@ def test_homepage_loads(page):
     homepage.assert_url()
     homepage.assert_homepage_loaded()
     homepage.assert_navbar_visible()
-    expect(page).to_have_title("Automation Exercise")
+    homepage.assert_homepage_title()
 
 def test_homepage_has_signup_login_link(page):
     homepage = HomePage(page)
     homepage.open()
-    expect(homepage.signup_login_link()).to_be_visible()
+    homepage.assert_signup_login_link_visible()
 
-def test_homepage_button(page):
-    # 1. Block Google Ad services globally
-    page.route("**/*googleads*", lambda route: route.abort())
-    page.route("**/*adsbygoogle*", lambda route: route.abort())
-
-    page.goto("https://automationexercise.com/")
-
-    page.locator("ul.nav.navbar-nav").get_by_role("link", name=" Test Cases").click()
-    
-    page.wait_for_url("**/test_cases")  
-
-    heading = page.locator("h2.title >> text='Test Cases'")
-    expect(heading).to_be_visible() 
+def test_homepage_test_cases_button(page):
+    homepage = HomePage(page)
+    homepage.block_google_ad_services()
+    homepage.open()
+    homepage.click_test_cases_link()
+    homepage.assert_test_cases_url()  
+    homepage.assert_test_cases_heading()
