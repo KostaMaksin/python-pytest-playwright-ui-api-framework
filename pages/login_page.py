@@ -37,6 +37,9 @@ class LoginPage:
     def enter_account_information_heading(self):
         return self.page.get_by_text("Enter Account Information")
     
+    def signup_error_message(self):
+        return self.page.locator("form[action='/signup'] p")
+    
     # Actions
     # Login
     def enter_login_email(self, email):
@@ -74,3 +77,9 @@ class LoginPage:
 
     def assert_signup_page_opened(self):
         expect(self.enter_account_information_heading()).to_be_visible()
+
+    def assert_signup_error_message_visible(self):
+        expect(self.signup_error_message()).to_be_visible()
+
+    def assert_signup_error_text(self, expected_text):
+        expect(self.signup_error_message()).to_have_text(expected_text)
