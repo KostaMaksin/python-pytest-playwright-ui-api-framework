@@ -3,7 +3,7 @@ from pages.login_page import LoginPage
 from pages.signup_page import SignupPage
 from utils.data_generator import generate_signup_user
 
-def test_user_can_signup_successfully(page):
+def test_user_can_signup_successfully_and_delete_account(page):
     home_page = HomePage(page)
     login_page = LoginPage(page)
     signup_page = SignupPage(page)
@@ -19,3 +19,8 @@ def test_user_can_signup_successfully(page):
     signup_page.fill_account_details(user)
     signup_page.click_create_account()
     signup_page.assert_account_created()
+
+    home_page.click_continue()
+    home_page.assert_logged_in()
+    home_page.click_delete_account()
+    home_page.assert_account_deleted()
