@@ -90,3 +90,9 @@ class HomePage:
 
     def click_continue(self):
         self.continue_button().click()
+
+    def products_link(self):
+        return self.page.get_by_role("link", name="Products")
+    
+    def click_products(self):
+        self.products_link().click()

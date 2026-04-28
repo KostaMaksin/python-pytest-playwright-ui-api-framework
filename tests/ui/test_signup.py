@@ -34,6 +34,5 @@ def test_signup_with_existing_mail_shows_error(page):
     home_page.click_signup_login_link()
 
     login_page.start_signup("Existing test user", VALID_USER["email"])
-    login_page.click_signup()
     login_page.assert_signup_error_message_visible()
     login_page.assert_signup_error_text("Email Address already exist!")
