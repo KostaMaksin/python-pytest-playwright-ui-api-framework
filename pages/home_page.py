@@ -39,6 +39,9 @@ class HomePage:
     def continue_button(self):
         return self.page.locator("a[data-qa='continue-button']")
     
+    def contact_us_link(self):
+        return self.page.get_by_role("link", name="Contact us")
+    
     # Actions
     def block_google_ad_services(self):
         # 1. Block Google Ad services globally
@@ -96,3 +99,6 @@ class HomePage:
     
     def click_products(self):
         self.products_link().click()
+
+    def click_contact_us(self):
+        self.contact_us_link().click()
