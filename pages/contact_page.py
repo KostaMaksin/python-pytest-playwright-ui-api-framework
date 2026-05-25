@@ -11,9 +11,6 @@ class ContactPage:
     def name_input(self):
         return self.page.locator("input[data-qa='name']")
     
-    def name_input(self):
-        return self.page.locator("input[data-qa='name']")
-    
     def email_input(self):
         return self.page.locator("input[data-qa='email']")
     
